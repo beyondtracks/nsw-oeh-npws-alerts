@@ -17,6 +17,32 @@ This pipeline has been built for [www.beyondtracks.com](https://www.beyondtracks
  - **Split by park** The upstream GeoRSS feed contains all alerts state wide, for BeyondTracks.com we prefer to be able to request alerts for an individual park.
  - **Sanitize HTML** The upstream feed uses HTML for formatting of alert content. This presents a security risk to any site using this feed directly to display alerts as NPWS could inject malicious content into the 3rd party site. We'd still like to retain the formatting used by NPWS to present their alert content as close as possible to as intended, so we use https://metacpan.org/pod/HTML::Scrubber to sanitize the HTML to ensure only safe formatting markup makes it through.
 
+# Usage
+
+    ./nsw-oeh-npws-alerts.pl /srv/www nsw-oeh-npws-alerts
+
+This will create the directory `nsw-oeh-npws-alerts` within /srv/www. Inside `nsw-oeh-npws-alerts` will be a series of JSON files, one for each park which contains an alert. The individual park alert JSON files will look like this:
+
+```json
+{
+    "content": {
+        "pubDate": "Wed, 08 Nov 2017 10:59:33 +1100",
+        "category": "Other planned events",
+        "name": "South East Forests National Park",
+        "description": "<strong>Other planned events: Weed spraying on Nungatta Road and Palarang Road</strong> ...",
+        "link": "http://www.nationalparks.nsw.gov.au/visit-a-park/parks/South-East-Forests-National-Park/Local-alerts"
+    },
+    "metadata": {
+        "pubDate": "Sat, 06 Jan 2018 10:25:48 +1100",
+        "attribution": "&copy; State of New South Wales through the Office of Environment and Heritage",
+        "link": "http://www.nationalparks.nsw.gov.au/alerts/alerts-list",
+        "generator": "NSW National Parks and Wildlife Service"
+    }
+}
+```
+
+`metadata` is details about the park alerts feed, and `content` is specific to this park alert. With this in mind the content pubDate indicates when the specific park alert was published/last revised and the metadata pubDate indicates when the park alerts feed was last updated/retrieved.
+
 # Warranty
 
 The use of information in the National Park Alerts feed can affect life and property.
