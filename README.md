@@ -19,9 +19,11 @@ This pipeline has been built for [www.beyondtracks.com](https://www.beyondtracks
 
 # Usage
 
-    ./nsw-oeh-npws-alerts.pl /srv/www nsw-oeh-npws-alerts
+```sh
+./nsw-oeh-npws-alerts.pl /srv/www nsw-oeh-npws-alerts
+```
 
-This will create the directory `nsw-oeh-npws-alerts` within /srv/www. Inside `nsw-oeh-npws-alerts` will be a series of JSON files, one for each park which contains an alert. The individual park alert JSON files will look like this:
+This will create the directory `nsw-oeh-npws-alerts` within `/srv/www`. Inside `nsw-oeh-npws-alerts` will be a series of JSON files, one for each park which contains an alert. The individual park alert JSON files will look like this:
 
 ```json
 {
