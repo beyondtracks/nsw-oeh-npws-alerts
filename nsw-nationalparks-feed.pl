@@ -1,11 +1,11 @@
 #!/usr/bin/perl -w
 
-# apt-get install libwww-perl libxml-rss-perl libjson-perl libhtml-scrubber-perl libfile-spec-perl
+# apt-get install libxml-rss-perl libjson-perl libhtml-scrubber-perl libfile-spec-perl
 
 use strict;
 use warnings;
 
-require LWP::UserAgent;
+use File::Temp qw/ tempfile /;
 use XML::RSS;
 use JSON 'encode_json';
 use File::Path qw(mkpath rmtree);
@@ -22,14 +22,16 @@ if (!-d $basedir) {
     die "$basedir does not exist\nUsage: $0 <output-directory>\n";
 }
 
-my $ua = LWP::UserAgent->new;
-$ua->timeout(10);
-
 my $rss_url = "http://www.nationalparks.nsw.gov.au/api/rssfeed/get";
 
-my $response = $ua->get($rss_url);
+# create a temp file to store the downloaded feed
+my ($feed_filehandle, $feed_filename) = tempfile();
 
-if ($response->is_success) {
+# download the feed with wget as LWP doesn't seem to handle dropped connections well
+# see README.md for further details
+my $wget_status = system("wget --quiet --tries=0 --read-timeout=30 -O $feed_filename $rss_url");
+
+if ($wget_status == 0) {
     #remove existing park alerts as they are no longer current
     rmtree( $basedir . "/park-alerts" );
 
@@ -37,8 +39,8 @@ if ($response->is_success) {
     mkdir $basedir . "/park-alerts";
 
     my $rss = XML::RSS->new();
-    $rss->parse( $response->decoded_content );
-    
+    $rss->parsefile($feed_filename);
+
     my $scrubber = HTML::Scrubber->new(
         allow => [ qw[ strong b br a ul ol li i span ] ],
         rules => [
@@ -72,7 +74,7 @@ if ($response->is_success) {
             "description" => $scrubber->scrub($item->{description}),
             "category" => $item->{category}
         };
-        
+
         my $json = {
             "metadata" => {
                 "pubDate" => $rss->{channel}->{'pubDate'},
@@ -83,12 +85,14 @@ if ($response->is_success) {
             "content" => $park_alert
         };
 
-        
+
         print $park_file encode_json $json;
 
         close $park_file;
     }
-
-}else{
-    die "NPSW RSS Feed failed to download providing response " . $response->status_line;
+    unlink $feed_filename;
+} else {
+    unlink $feed_filename;
+    print STDERR "Error downloading remote feed\n";
+    exit $wget_status;
 }
