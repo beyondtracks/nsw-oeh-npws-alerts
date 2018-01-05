@@ -1,7 +1,5 @@
 #!/usr/bin/perl -w
 
-# apt-get install libxml-rss-perl libjson-perl libhtml-scrubber-perl libfile-spec-perl
-
 use strict;
 use warnings;
 

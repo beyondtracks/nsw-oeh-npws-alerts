@@ -19,9 +19,13 @@ This pipeline has been built for [www.beyondtracks.com](https://www.beyondtracks
 
 # Usage
 
-```sh
-./nsw-oeh-npws-alerts.pl /srv/www nsw-oeh-npws-alerts
-```
+Install required Perl dependencies, on Debian with:
+
+     sudo apt-get install libxml-rss-perl libjson-perl libhtml-scrubber-perl libfile-spec-perl
+
+Then run the script with:
+
+    ./nsw-oeh-npws-alerts.pl /srv/www nsw-oeh-npws-alerts
 
 This will create the directory `nsw-oeh-npws-alerts` within `/srv/www`. Inside `nsw-oeh-npws-alerts` will be a series of JSON files, one for each park which contains an alert. The individual park alert JSON files will look like this:
 
