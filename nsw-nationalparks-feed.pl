@@ -12,14 +12,15 @@ use File::Path qw(mkpath rmtree);
 use HTML::Scrubber;
 use File::Spec;
 
-if (@ARGV < 1) {
-    die "Usage: $0 <output-directory>\n";
+if (@ARGV < 2) {
+    die "Usage: $0 <output-directory> <alert-directory-name>\n";
 }
 
 my $basedir = $ARGV[0];
+my $alertdir = $ARGV[1];
 
 if (!-d $basedir) {
-    die "$basedir does not exist\nUsage: $0 <output-directory>\n";
+    die "$basedir does not exist\nUsage: $0 <output-directory> <alert-directory-name>\n";
 }
 
 my $rss_url = "http://www.nationalparks.nsw.gov.au/api/rssfeed/get";
@@ -33,10 +34,10 @@ my $wget_status = system("wget --quiet --tries=0 --read-timeout=30 -O $feed_file
 
 if ($wget_status == 0) {
     #remove existing park alerts as they are no longer current
-    rmtree( $basedir . "/park-alerts" );
+    rmtree( $basedir . "/$alertdir" );
 
     # create a new empty directory for the new park alerts
-    mkdir $basedir . "/park-alerts";
+    mkdir $basedir . "/$alertdir";
 
     my $rss = XML::RSS->new();
     $rss->parsefile($feed_filename);
@@ -62,7 +63,7 @@ if ($wget_status == 0) {
         # final check to ensure no path traversal can occur
         ($park_name) = File::Spec->no_upwards( ($park_name) );
 
-        my $park_file_name = $basedir . "/park-alerts/" . (lc($park_name)) . ".json";
+        my $park_file_name = $basedir . "/$alertdir/" . (lc($park_name)) . ".json";
 
         open (my $park_file, '>', $park_file_name);
 
