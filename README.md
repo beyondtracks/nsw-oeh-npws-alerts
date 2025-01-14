@@ -1,6 +1,6 @@
 # nsw-oeh-npws-alerts
 
-The NSW National Parks and Wildlife Service (NPWS) publishes [park alerts](https://www.nationalparks.nsw.gov.au/alerts/alerts-list) as an [RSS feed](http://www.nationalparks.nsw.gov.au/api/rssfeed/get). This project aims to make that feed more developer friendly.
+The NSW National Parks and Wildlife Service (NPWS) publishes [park alerts](https://www.nationalparks.nsw.gov.au/alerts/alerts-list) as an [RSS feed](https://www.nationalparks.nsw.gov.au/api/rssfeed/get). This project aims to make that feed more developer friendly.
 
 You can either build this application into your own pipeline or use the hosted URL at https://www.beyondtracks.com/contrib/nsw-oeh-npws-alerts/ (no service availability guarantees!).
 
