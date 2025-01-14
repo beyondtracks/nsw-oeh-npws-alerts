@@ -7,7 +7,7 @@ use utf8;
 use Encode;
 use File::Temp qw/ tempfile /;
 use XML::RSS;
-use JSON 'encode_json';
+use JSON;
 use File::Path qw(mkpath rmtree);
 use HTML::Scrubber;
 use HTML::Entities; # provides decode_entities
@@ -21,6 +21,8 @@ use open qw( :std :encoding(UTF-8) );
 
 # setup the HTML to Markdown converter
 my $html2md = new HTML::WikiConverter( dialect => 'Markdown', link_style => 'inline', md_extra => 1 );
+
+my $json = JSON->new->space_after->indent;
 
 if (@ARGV < 2) {
     die "Usage: $0 <output-directory> <alert-directory-name>\n";
@@ -138,7 +140,7 @@ if ($wget_status == 0) {
             "category" => $item->{category}
         };
 
-        my $json = {
+        my $json_content = {
             "metadata" => {
                 "pubDate" => $rss->{channel}->{'pubDate'},
                 "generator" => $rss->{channel}->{generator},
@@ -163,7 +165,7 @@ if ($wget_status == 0) {
         $md =~ s/\n\n\n*/\n\n/g;
 
         # save as JSON
-        print {$park_file_json} encode_json $json;
+        print {$park_file_json} $json->encode($json_content);
 
         # save description as HTML
         print $park_file_html $description;
