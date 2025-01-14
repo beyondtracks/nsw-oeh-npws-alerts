@@ -4,7 +4,7 @@ The NSW National Parks and Wildlife Service (NPWS) publishes [park alerts](https
 
 You can either build this application into your own pipeline or use the hosted URL at https://www.beyondtracks.com/contrib/nsw-oeh-npws-alerts/ (no service availability guarantees!).
 
-_NSW OEH National Park Alerts are © State of New South Wales and Department of Climate Change, Energy, the Environment and Water (DCCEEW). Licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0)._ See [https://www.nationalparks.nsw.gov.au/copyright-disclaimer](https://www.nationalparks.nsw.gov.au/copyright-disclaimer).
+_NSW NPWS National Park Alerts are © State of New South Wales and Department of Climate Change, Energy, the Environment and Water (DCCEEW). Licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0)._ See [https://www.nationalparks.nsw.gov.au/copyright-disclaimer](https://www.nationalparks.nsw.gov.au/copyright-disclaimer).
 
 # Where is it used?
 
