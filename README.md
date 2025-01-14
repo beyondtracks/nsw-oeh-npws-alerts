@@ -1,10 +1,10 @@
 # nsw-oeh-npws-alerts
 
-The NSW Office of Environment and Heritage (OEH) [publishes an RSS feed of park alerts](http://www.nationalparks.nsw.gov.au/api/rssfeed/get), this project aims to make that feed more developer friendly.
+The NSW National Parks and Wildlife Service (NPWS) publishes [park alerts](https://www.nationalparks.nsw.gov.au/alerts/alerts-list) as an [RSS feed](http://www.nationalparks.nsw.gov.au/api/rssfeed/get). This project aims to make that feed more developer friendly.
 
 You can either build this application into your own pipeline or use the hosted URL at https://www.beyondtracks.com/contrib/nsw-oeh-npws-alerts/ (no service availability guarantees!).
 
-_NSW OEH National Park Alerts are © State of New South Wales and Office of Environment and Heritage 2018. Licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0)._
+_NSW OEH National Park Alerts are © State of New South Wales and Department of Climate Change, Energy, the Environment and Water (DCCEEW). Licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0)._ See [https://www.nationalparks.nsw.gov.au/copyright-disclaimer](https://www.nationalparks.nsw.gov.au/copyright-disclaimer).
 
 # Where is it used?
 

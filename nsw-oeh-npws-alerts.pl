@@ -79,7 +79,7 @@ if ($wget_status == 0) {
                 "pubDate" => $rss->{channel}->{'pubDate'},
                 "generator" => $rss->{channel}->{generator},
                 "link" => $rss->{channel}->{link},
-                "attribution" => "&copy; State of New South Wales through the Office of Environment and Heritage"
+                "attribution" => "&copy; State of New South Wales and Department of Climate Change, Energy, the Environment and Water (DCCEEW)"
             },
             "content" => $park_alert
         };
