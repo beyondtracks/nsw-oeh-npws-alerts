@@ -21,9 +21,9 @@ This pipeline has been built for [www.beyondtracks.com](https://www.beyondtracks
 
 # Usage
 
-Install required Perl dependencies, on Debian with:
+Install required wget and Perl dependencies, on Debian with:
 
-     sudo apt-get install libxml-rss-perl libjson-perl libhtml-scrubber-perl libfile-spec-perl libhtml-wikiconverter-markdown-perl libtext-unidecode-perl libhtml-clean-perl
+     sudo apt-get install wget libxml-rss-perl libjson-perl libhtml-scrubber-perl libfile-spec-perl libhtml-wikiconverter-markdown-perl libtext-unidecode-perl libhtml-clean-perl
 
 Then run the script with:
 
