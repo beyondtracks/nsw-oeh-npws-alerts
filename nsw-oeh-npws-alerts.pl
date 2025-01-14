@@ -21,7 +21,7 @@ if (!-d $basedir) {
     die "$basedir does not exist\nUsage: $0 <output-directory> <alert-directory-name>\n";
 }
 
-my $rss_url = "http://www.nationalparks.nsw.gov.au/api/rssfeed/get";
+my $rss_url = "https://www.nationalparks.nsw.gov.au/api/rssfeed/get";
 
 # create a temp file to store the downloaded feed
 my ($feed_filehandle, $feed_filename) = tempfile();
