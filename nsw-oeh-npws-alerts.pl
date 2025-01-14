@@ -22,7 +22,7 @@ use open qw( :std :encoding(UTF-8) );
 # setup the HTML to Markdown converter
 my $html2md = new HTML::WikiConverter( dialect => 'Markdown', link_style => 'inline', md_extra => 1 );
 
-my $json = JSON->new->space_after->indent;
+my $json = JSON->new->canonical->space_after->indent;
 
 if (@ARGV < 2) {
     die "Usage: $0 <output-directory> <alert-directory-name>\n";
